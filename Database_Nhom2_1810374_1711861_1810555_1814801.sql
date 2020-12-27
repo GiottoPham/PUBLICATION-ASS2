@@ -199,93 +199,93 @@ insert into editor
 values ('0000000005'),  ('0000000006'),  ('0000000007'),  ('0000000008');
 
 insert into paper(paper_id,title,summary,paper_file,editor_id,contact_author_id,post_date,final_result,`status`)
-values ('P000000001','Machine Learning of Tensorflow',
+values ('0000000001','Machine Learning of Tensorflow',
 'Quantile regression is an indispensable tool for statistical learning. Traditional quantile regression methods consider vector-valued covariates and estimate the corresponding coefficient vector.',
 'https://www.jmlr.org/papers/volume21/19-585/19-585.pdf','0000000005','0000000001','2020-12-5','rejection','in review'),
-('P000000002','Healthy General','The aim of this study was to compare the defined indicators of tuberculosis (TB) control program in
+('0000000002','Healthy General','The aim of this study was to compare the defined indicators of tuberculosis (TB) control program in
 the intervention and control prisons.','https://www.emerald.com/insight/content/doi/10.1108/JHR-04-2019-0074/full/pdf?title=comparison-of-tuberculosis-indicators-after-implementation-of-the-clinical-protocol-for-tuberculosis-and-hiv-management-in-iranian-prisons-a-quasi-experimental-study','0000000006','0000000002','2019-10-29','acceptance','posted'),
-('P000000003','Review of Hello World','There has been a flowering of scholarly interest in the literature review as a research method in the information
+('0000000003','Review of Hello World','There has been a flowering of scholarly interest in the literature review as a research method in the information
 systems discipline','https://core.ac.uk/download/pdf/301376904.pdf','0000000007','0000000001','2015-10-28','rejection',null),
-('P000000004','Review of Alice in Wonderland','The aim of this review was to show everyone the thrilling of Alice in Wonderlan book.','http://www.ysgolgymraeg.ceredigion.sch.uk/gwaith_plant/Review%20Alice%20in%20Wonderland.pdf','0000000008','0000000002','2018-10-27','acceptance','posted');
+('0000000004','Review of Alice in Wonderland','The aim of this review was to show everyone the thrilling of Alice in Wonderlan book.','http://www.ysgolgymraeg.ceredigion.sch.uk/gwaith_plant/Review%20Alice%20in%20Wonderland.pdf','0000000008','0000000002','2018-10-27','acceptance','posted');
 
-insert into research_paper VALUES('P000000001',15);
-insert into general_paper VALUES('P000000002',8);
+insert into research_paper VALUES('0000000001',15);
+insert into general_paper VALUES('0000000002',8);
 
 insert into book(isbn,`name`)
 values('1231231231231','Hello World');
 insert into book(isbn,`name`)
 values('1231231231232','Alice in Wonderland');
 
-insert into review_paper VALUES('P000000003',3,'1231231231231');
-insert into review_paper VALUES('P000000004',4,'1231231231232');
+insert into review_paper VALUES('0000000003',3,'1231231231231');
+insert into review_paper VALUES('0000000004',4,'1231231231232');
 
-insert into published_paper values('10.111/dome.12082', 'traditional','P000000004');
-insert into published_paper values('10.111/dome.13444', 'open access','P000000002');
+insert into published_paper values('10.111/dome.12082', 'traditional','0000000004');
+insert into published_paper values('10.111/dome.13444', 'open access','0000000002');
 
-insert into criteria values('C000000001','ND1');
-insert into criteria values('C000000002','ND2');
+insert into criteria values('0000000001','ND1');
+insert into criteria values('0000000002','ND2');
 
-insert into rating_level values('C000000001','LV1',5);
-insert into rating_level values('C000000001','LV2',10);
-insert into rating_level values('C000000002','LV1',4);
-insert into rating_level values('C000000002','LV2',6);
-insert into rating_level values('C000000002','LV3',8);
-insert into rating_level values('C000000002','LV4',10);
+insert into rating_level values('0000000001','LV1',5);
+insert into rating_level values('0000000001','LV2',10);
+insert into rating_level values('0000000002','LV1',4);
+insert into rating_level values('0000000002','LV2',6);
+insert into rating_level values('0000000002','LV3',8);
+insert into rating_level values('0000000002','LV4',10);
 
-insert into `write` values('P000000001','0000000001');
-insert into `write` values('P000000002','0000000001');
-insert into `write` values('P000000002','0000000002');
-insert into `write` values('P000000003','0000000001');
-insert into `write` values('P000000003','0000000002');
-insert into `write` values('P000000003','0000000003');
-insert into `write` values('P000000004','0000000002');
+insert into `write` values('0000000001','0000000001');
+insert into `write` values('0000000002','0000000001');
+insert into `write` values('0000000002','0000000002');
+insert into `write` values('0000000003','0000000001');
+insert into `write` values('0000000003','0000000002');
+insert into `write` values('0000000003','0000000003');
+insert into `write` values('0000000004','0000000002');
 
 insert into assign(paper_id,reviewer_id,editor_id, assign_date) 
-values('P000000001','0000000003', '0000000005', '2020-6-12');
+values('0000000001','0000000003', '0000000005', '2020-6-12');
 insert into assign(paper_id,reviewer_id,editor_id,assign_date)  
-values('P000000002','0000000003', '0000000006','2019-10-30');
+values('0000000002','0000000003', '0000000006','2019-10-30');
 insert into assign(paper_id,reviewer_id,editor_id,assign_date) 
-values('P000000002','0000000004', '0000000006','2019-10-30');
+values('0000000002','0000000004', '0000000006','2019-10-30');
 insert into assign(paper_id,reviewer_id,editor_id,assign_date) 
-values('P000000003','0000000005', '0000000007', '2015-10-29');
+values('0000000003','0000000005', '0000000007', '2015-10-29');
 insert into assign(paper_id,reviewer_id,editor_id,assign_date) 
-values('P000000004','0000000004', '0000000008','2018-10-30');
+values('0000000004','0000000004', '0000000008','2018-10-30');
 insert into assign(paper_id,reviewer_id,editor_id,assign_date) 
-values('P000000004','0000000005', '0000000008','2018-10-30');
+values('0000000004','0000000005', '0000000008','2018-10-30');
 insert into assign(paper_id,reviewer_id,editor_id,assign_date) 
-values('P000000004','0000000006', '0000000008','2018-10-30');
+values('0000000004','0000000006', '0000000008','2018-10-30');
 
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
-values('P000000001','0000000003', 'C000000001');
+values('0000000001','0000000003', '0000000001');
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
-values('P000000002','0000000003', 'C000000002');
+values('0000000002','0000000003', '0000000002');
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
-values('P000000002','0000000004', 'C000000002');
+values('0000000002','0000000004', '0000000002');
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
-values('P000000003','0000000005', 'C000000001');
+values('0000000003','0000000005', '0000000001');
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
-values('P000000003','0000000005', 'C000000002');
+values('0000000003','0000000005', '0000000002');
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
-values('P000000004','0000000004', 'C000000001');
+values('0000000004','0000000004', '0000000001');
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
-values('P000000004','0000000005', 'C000000001');
+values('0000000004','0000000005', '0000000001');
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
-values('P000000004','0000000006', 'C000000001');
+values('0000000004','0000000006', '0000000001');
 
 insert into review(paper_id,reviewer_id,review_result)
-values('P000000001','0000000003','Good');
+values('0000000001','0000000003','Good');
 insert into review(paper_id,reviewer_id,review_result)
-values('P000000002','0000000003','Not Good');
+values('0000000002','0000000003','Not Good');
 insert into review(paper_id,reviewer_id,review_result)
-values('P000000002','0000000004','Bad');
+values('0000000002','0000000004','Bad');
 insert into review(paper_id,reviewer_id,review_result)
-values('P000000003','0000000005','Very Good');
+values('0000000003','0000000005','Very Good');
 insert into review(paper_id,reviewer_id,review_result)
-values('P000000004','0000000004','Normal');
+values('0000000004','0000000004','Normal');
 insert into review(paper_id,reviewer_id,review_result)
-values('P000000004','0000000005','Normal');
+values('0000000004','0000000005','Normal');
 insert into review(paper_id,reviewer_id,review_result)
-values('P000000004','0000000006','Normal');
+values('0000000004','0000000006','Normal');
 
 
  
