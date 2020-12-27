@@ -65,6 +65,7 @@ create table paper(
     announce_date date,
     editor_id char(10) not null,
     contact_author_id char(10) not null,
+    note_for_author varchar(255),
     primary key(paper_id),
 	foreign key(editor_id) references  editor(id) ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key(contact_author_id) references  author(id) ON DELETE CASCADE ON UPDATE CASCADE
