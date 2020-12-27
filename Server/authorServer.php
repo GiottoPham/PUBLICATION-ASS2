@@ -7,7 +7,7 @@ $get_option_result = NULL;
 $get_sum_result = NULL;
 $result_text = NULL;
 
-$select_all_paper_query = "select * from paper where status <>'posted'";
+$select_all_paper_query = "select * from paper where paper_id not in (select paper_id from paper where status='posted')";
 $select_all_paper_result = mysqli_query($connect_handle, $select_all_paper_query);
 
 if(isset($_POST['getMoreInfoBtn'])){

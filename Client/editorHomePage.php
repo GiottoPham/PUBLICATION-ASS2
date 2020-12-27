@@ -197,6 +197,28 @@
                             }
                         ?>
                         </p>
+                        <p><strong>Ghi chú từ phản biện :</strong>
+                        <?php 
+                            $paperid=$moreinfo_paper_data['paper_id'];
+                            $query_review="select * from review where paper_id='$paperid'";
+                            $result_review = mysqli_query($connect_handle, $query_review);
+                        ?>
+                            <?php foreach($result_review as $review):?>
+                            <?php 
+                            $reviewid=$review['reviewer_id'];
+                            $get_reviewer_name_query = "select last_name, middle_name, first_name from scientist where id = '$reviewid'";
+                            $get_reviewer_name_result = mysqli_query($connect_handle, $get_reviewer_name_query);
+                            $data = mysqli_fetch_assoc($get_reviewer_name_result);
+                            $reviewername = $data['last_name']." ".$data['middle_name']." ".$data['first_name'];
+                            echo "<br>";echo $reviewername; echo ": ";
+                            if($review['note_for_editor'] != NULL){
+                                echo $review['note_for_editor'];
+                            }else{
+                                echo '<i class="text-muted">Chưa có thông tin</i>';
+                            }
+                            ?>
+                        <?php endforeach?>
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <form method="POST" action="editorHomePage.php">
