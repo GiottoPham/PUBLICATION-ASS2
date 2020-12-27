@@ -68,7 +68,7 @@
                             <button class="btn btn-success" name="getMoreInfoBtn">Xem chi tiết</button>
                             <?php 
                                 $paperid = $paper['paper_id'];
-                                $check_query = "select * from paper p join review r on p.paper_id = r.paper_id where p.paper_id = '$paperid' and reviewer_id = '$userid' and status in ('in review', 'response review')";
+                                $check_query = "select * from paper p join assign a on p.paper_id = a.paper_id where p.paper_id = '$paperid' and reviewer_id = '$userid' and status in (null,'in review', 'response review')";
                                 $check_result = mysqli_query($connect_handle, $check_query);
                             ?>
                             <?php if(mysqli_num_rows($check_result) > 0):?>

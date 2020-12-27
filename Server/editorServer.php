@@ -52,10 +52,18 @@ if(isset($_POST['updateBtn'])){
     $after_review_result = $_POST['after_review_result'];
     $final_result = $_POST['final_result'];
     $paperIdToUpdate = $_POST['paperIdToUpdate'];
-
-    $query = "update paper set status = '$status', after_review_result = '$after_review_result', final_result = '$final_result' where paper_id='$paperIdToUpdate'";
-    $result = mysqli_query($connect_handle, $query);
-    
+    if(($status)!=""){
+        $query1 = "update paper set status = '$status' where paper_id='$paperIdToUpdate'";
+        $result1 = mysqli_query($connect_handle, $query1);
+    }
+    if(($after_review_result)!=""){
+        $query2 = "update paper set after_review_result = '$after_review_result' where paper_id='$paperIdToUpdate'";
+        $result2 = mysqli_query($connect_handle, $query2);
+    }
+    if(($final_result)!=""){
+        $query3 = "update paper set final_result = '$final_result' where paper_id='$paperIdToUpdate'";
+    $result3 = mysqli_query($connect_handle, $query3);
+    }
     echo 
         "<script>
             $(window).on('load', function () {

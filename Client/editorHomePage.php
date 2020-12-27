@@ -224,7 +224,14 @@
                         <form method="POST" action="editorHomePage.php">
                             <input type="hidden" name="paperIdToUpdate"
                                 value="<?php echo $moreinfo_paper_data['paper_id']; ?>" />
+                                <?php 
+                                $paperid1 = $moreinfo_paper_data['paper_id'];
+                                $check_query1 = "select * from paper where paper_id = '$paperid1' and editor_id = '$userid'";
+                                $check_result1 = mysqli_query($connect_handle, $check_query1);
+                            ?>
+                            <?php if(mysqli_num_rows($check_result1) > 0):?>
                             <button type="submit" class="btn btn-success" name="updatePaper">Cập nhật</button>
+                            <?php endif?>
                         </form>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                     </div>
@@ -245,6 +252,7 @@
                             <div class="form-group">
                                 <label for="status"><strong>Tình trạng</strong></label>
                                 <select class="custom-select" name="status">
+                                    <option selected></option>
                                     <option value="in review">in review</option>
                                     <option value="response review">response review</option>
                                     <option value="complete review">complete review</option>
@@ -255,6 +263,7 @@
                             <div class="form-group">
                                 <label for="after_review_result"><strong>Kết quả sau phản biện</strong></label>
                                 <select class="custom-select" name="after_review_result">
+                                    <option selected></option>
                                     <option value="Very Good">Very Good</option>
                                     <option value="Good">Good</option>
                                     <option value="Normal">Normal</option>
@@ -265,6 +274,7 @@
                             <div class="form-group">
                                 <label for="final_result"><strong>Kết quả cuối cùng</strong></label>
                                 <select class="custom-select" name="final_result">
+                                <option selected></option>
                                     <option value="major revision">major revision</option>
                                     <option value="acceptance">acceptance</option>
                                     <option value="minor revision">minor revision</option>
