@@ -15,7 +15,7 @@ create table scientist(
     job varchar(255),
 	primary key(id)
 );
-
+-- table account is used for web application
 create table `account`(
 	id char(10) primary key,
     username varchar(20),
@@ -206,9 +206,10 @@ values ('0000000001','Machine Learning of Tensorflow',
 the intervention and control prisons.','https://www.emerald.com/insight/content/doi/10.1108/JHR-04-2019-0074/full/pdf?title=comparison-of-tuberculosis-indicators-after-implementation-of-the-clinical-protocol-for-tuberculosis-and-hiv-management-in-iranian-prisons-a-quasi-experimental-study','0000000006','0000000002','2019-10-29','acceptance','posted'),
 ('0000000003','Review of Hello World','There has been a flowering of scholarly interest in the literature review as a research method in the information
 systems discipline','https://core.ac.uk/download/pdf/301376904.pdf','0000000007','0000000001','2015-10-28','rejection',null),
-('0000000004','Review of Alice in Wonderland','The aim of this review was to show everyone the thrilling of Alice in Wonderlan book.','http://www.ysgolgymraeg.ceredigion.sch.uk/gwaith_plant/Review%20Alice%20in%20Wonderland.pdf','0000000008','0000000002','2018-10-27','acceptance','posted');
-
+('0000000004','Review of Alice in Wonderland','The aim of this review was to show everyone the thrilling of Alice in Wonderlan book.','http://www.ysgolgymraeg.ceredigion.sch.uk/gwaith_plant/Review%20Alice%20in%20Wonderland.pdf','0000000008','0000000002','2018-10-27','acceptance','posted'),
+('0000000005','Deep Learning and AI', 'Introduction about deeplearning and AI', 'http://faculty.neu.edu.cn/yury/AAI/Textbook/Deep%20Learning%20with%20Python.pdf','0000000008','0000000001','2020-10-27',null,'in review');
 insert into research_paper VALUES('0000000001',15);
+insert into research_paper VALUES('0000000005',13);
 insert into general_paper VALUES('0000000002',8);
 
 insert into book(isbn,`name`)
@@ -222,15 +223,15 @@ insert into review_paper VALUES('0000000004',4,'1231231231232');
 insert into published_paper values('10.111/dome.12082', 'traditional','0000000004');
 insert into published_paper values('10.111/dome.13444', 'open access','0000000002');
 
-insert into criteria values('0000000001','ND1');
-insert into criteria values('0000000002','ND2');
+insert into criteria values('0000000001','Theo nội dung');
+insert into criteria values('0000000002','Theo đề tài');
 
-insert into rating_level values('0000000001','LV1',5);
-insert into rating_level values('0000000001','LV2',10);
-insert into rating_level values('0000000002','LV1',4);
-insert into rating_level values('0000000002','LV2',6);
-insert into rating_level values('0000000002','LV3',8);
-insert into rating_level values('0000000002','LV4',10);
+insert into rating_level values('0000000001','Ko hay',5);
+insert into rating_level values('0000000001','Hay',10);
+insert into rating_level values('0000000002','Đề tài dở',4);
+insert into rating_level values('0000000002','Đề tài bình thường',6);
+insert into rating_level values('0000000002','Đề tài ổn',8);
+insert into rating_level values('0000000002','Đề tài tốt',10);
 
 insert into `write` values('0000000001','0000000001');
 insert into `write` values('0000000002','0000000001');
@@ -239,6 +240,8 @@ insert into `write` values('0000000003','0000000001');
 insert into `write` values('0000000003','0000000002');
 insert into `write` values('0000000003','0000000003');
 insert into `write` values('0000000004','0000000002');
+insert into `write` values('0000000005','0000000001');
+insert into `write` values('0000000005','0000000002');
 
 insert into assign(paper_id,reviewer_id,editor_id, assign_date) 
 values('0000000001','0000000003', '0000000005', '2020-6-12');
@@ -254,6 +257,8 @@ insert into assign(paper_id,reviewer_id,editor_id,assign_date)
 values('0000000004','0000000005', '0000000008','2018-10-30');
 insert into assign(paper_id,reviewer_id,editor_id,assign_date) 
 values('0000000004','0000000006', '0000000008','2018-10-30');
+insert into assign(paper_id,reviewer_id,editor_id,assign_date) 
+values('0000000005','0000000005', '0000000008','2020-10-30');
 
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
 values('0000000001','0000000003', '0000000001');
@@ -271,6 +276,8 @@ insert into evaluate(paper_id,reviewer_id,criteria_id)
 values('0000000004','0000000005', '0000000001');
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
 values('0000000004','0000000006', '0000000001');
+insert into evaluate(paper_id,reviewer_id,criteria_id) 
+values('0000000005','0000000008', '0000000001');
 
 insert into review(paper_id,reviewer_id,review_result)
 values('0000000001','0000000003','Good');
@@ -286,6 +293,8 @@ insert into review(paper_id,reviewer_id,review_result)
 values('0000000004','0000000005','Normal');
 insert into review(paper_id,reviewer_id,review_result)
 values('0000000004','0000000006','Normal');
+insert into review(paper_id,reviewer_id,review_result)
+values('0000000005','0000000008','Very Good');
 
 
  
