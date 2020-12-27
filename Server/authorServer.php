@@ -7,7 +7,7 @@ $get_option_result = NULL;
 $get_sum_result = NULL;
 $result_text = NULL;
 
-$select_all_paper_query = "select * from paper ";
+$select_all_paper_query = "select * from paper where status <>'posted'";
 $select_all_paper_result = mysqli_query($connect_handle, $select_all_paper_query);
 
 if(isset($_POST['getMoreInfoBtn'])){
@@ -66,20 +66,20 @@ if(isset($_POST['viewOption'])){
     $authorid = $_POST['authorid'];
     $year = $_POST['year'];
     
-    $query6 = "select paper_id, title
+    $query6 = "select *
     from paper
     where year(post_date)='$year'
     ";    
 
-    $query7="select paper_id, title
+    $query7="select *
     from paper
     where year(post_date)='$year' and `status`='posted'";
 
-    $query8="select paper_id, title
+    $query8="select *
     from paper
     where status='publishing'";
 
-    $query9="select paper_id,title
+    $query9="select *
     from paper  
     where final_result='rejection'";
 

@@ -29,7 +29,7 @@
         <?php include_once('component/header.php');?>
     </div>
     <div class="container-fluid" style="padding-top: 80px;">
-        <div class="display-4 text-center text-info text-uppercase">Danh sách các bài báo hiện nay</div>
+        <div class="display-4 text-center text-info text-uppercase">Danh sách các bài báo đang được xử lý</div>
         <hr>
         <table class="table table-bordered">
             <thead class="thead-dark">
@@ -272,7 +272,7 @@
         <form class="form-container" name="viewOption" method="POST" action="authorHomePage.php">
             <label for="viewOption"><strong>chọn tính năng hiển thị</strong></label>
             <div class="form-row">
-                <div class="form-group col-md-7">
+                <div class="form-group col-md-8">
                     <select class="custom-select" name="optionView">
                         <option selected>Chọn tác vụ</option>
                         <option value="6">Xem danh sách các bài báo trong một năm</option>
@@ -284,22 +284,10 @@
                         <option value="12">Xem tổng số bài báo tổng quan được đăng mỗi năm trong 5 năm gần đây nhất</option>
                     </select>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <input type="number" class="form-control" name="year" id="year"
                         aria-describedby="emailHelp" placeholder="Nhập Năm">
                     </input>
-                </div>
-                <div class="form-group col-md-2">
-                    <select class="custom-select" name="authorid">
-                        <option selected>Chọn tên tác giả (nếu cần)</option>
-                        <?php 
-                            $query_author="select id, last_name, middle_name, first_name from scientist where scientist.id in (select id from author)";
-                            $result_author = mysqli_query($connect_handle, $query_author);
-                        ?>
-                        <?php foreach($result_author as $author):?>
-                            <option value="<?php echo $author['id']?>"><?php echo $author['last_name'].' '.$author['middle_name'].' '.$author['first_name'];?></option>
-                        <?php endforeach?>
-                    </select>
                 </div>
                 <div class="form-group text-right col-md-1">
                     <button type="submit" class="btn btn-success" name="viewOption">Hiển thị</button>
@@ -313,8 +301,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Tiêu đề</th>
                         <th scope="col">Mã DOI</th>
-                        <th scope="col">Thể loại</th>
-                        <th scope="col">Kết quả Phản biện</th>
+                        <th scope="col">Kết quả Cuối cùng</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -344,17 +331,8 @@
                     </td>
                     <td>
                         <?php
-                        if(array_key_exists('Category',$paper)){
-                            echo $paper['Category'];
-                        }else{
-                            echo "Null";
-                        } 
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        if(array_key_exists('review_result',$paper)){
-                            echo $paper['review_result'];
+                        if(array_key_exists('final_result',$paper)){
+                            echo $paper['final_result'];
                         }else{
                             echo "Null";
                         } 

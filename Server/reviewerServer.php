@@ -7,7 +7,7 @@ $get_option_result = NULL;
 $get_author_result = NULL;
 $result_text = NULL;
 
-$select_all_paper_query = "select * from paper ";
+$select_all_paper_query = "select * from paper where status <>'posted' ";
 $select_all_paper_result = mysqli_query($connect_handle, $select_all_paper_query);
 
 if(isset($_POST['getMoreInfoBtn'])){
@@ -92,17 +92,17 @@ if(isset($_POST['viewOption'])){
     select a.contact_author_id from (
     select count(*) paper_num, paper.contact_author_id 
     from paper inner join assign on paper.paper_id = assign.paper_id 
-    where assign.reviewer_id = reviewer_id_for_search group by paper.contact_author_id) a 
+    where assign.reviewer_id = '$userid' group by paper.contact_author_id) a 
     where a.paper_num = (
     select max(b.paper_num) 
     from (
     select count(*) paper_num, paper.contact_author_id 
     from paper inner join assign on paper.paper_id = assign.paper_id 
-    where assign.reviewer_id = reviewer_id_for_search 
+    where assign.reviewer_id = '$userid'
     group by paper.contact_author_id) b) 
     group by a.contact_author_id)";
 
-    $query8="select paper_id, review_result from review where paper_id in (select paper_id from assign where reviewer_id = '$userid' and (year(now())=year(assign_date))) group by paper_id";
+    $query8="select p.paper_id, title, review_result from review r join paper p on r.paper_id=p.paper_id  where p.paper_id in (select paper_id from assign where reviewer_id = '$userid' and (year(now())=year(assign_date))) group by paper_id";
 
     $query9="select year(post_date) as Sum
     from paper

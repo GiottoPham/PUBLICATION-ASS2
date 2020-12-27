@@ -29,7 +29,7 @@
         <?php include_once('component/header.php');?>
     </div>
     <div class="container-fluid" style="padding-top: 80px;">
-        <div class="display-4 text-center text-info text-uppercase">Danh sách các bài báo hiện nay</div>
+        <div class="display-4 text-center text-info text-uppercase">Danh sách các bài báo đang được xử lý</div>
         <hr>
         <table class="table table-bordered">
             <thead class="thead-dark">
@@ -68,7 +68,7 @@
                             <button class="btn btn-success" name="getMoreInfoBtn">Xem chi tiết</button>
                             <?php 
                                 $paperid = $paper['paper_id'];
-                                $check_query = "select * from review where paper_id = '$paperid' and reviewer_id = '$userid'";
+                                $check_query = "select * from paper p join review r on p.paper_id = r.paper_id where p.paper_id = '$paperid' and reviewer_id = '$userid' and status in ('in review', 'response review')";
                                 $check_result = mysqli_query($connect_handle, $check_query);
                             ?>
                             <?php if(mysqli_num_rows($check_result) > 0):?>
@@ -373,7 +373,7 @@
                 <?php foreach ($get_author_result as $author){ ?>
                 <tr>
                     <td>
-                        <?php echo '<strong>'.$author['paper_id'].'</strong>'; ?>
+                        <?php echo '<strong>'.$author['id'].'</strong>'; ?>
                     </td>
                     <td>
                         <?php echo $author['last_name']; ?>

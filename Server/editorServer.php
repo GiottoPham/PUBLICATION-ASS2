@@ -3,7 +3,7 @@ include('DBstart.php');
 include('userLogin.php');
 
 $userid = $_SESSION['userid'];
-$select_all_paper_query = "select * from paper;";
+$select_all_paper_query = "select * from paper where status <>'posted' ;";
 $select_all_paper_result = mysqli_query($connect_handle, $select_all_paper_query);
 $get_option_result = NULL;
 

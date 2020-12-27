@@ -38,6 +38,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="criteria.php"><strong>Tiêu chí đánh giá</strong></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="allpaper.php"><strong>Danh sách báo đã đăng</strong></a>
+                    </li>
                 </ul>
                 <?php if(isset($_SESSION['username'])): ?>
                 <div class="nav-item dropdown">
