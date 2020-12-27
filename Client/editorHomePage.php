@@ -68,7 +68,7 @@
                             <button class="btn btn-success" name="getMoreInfoBtn">Xem chi tiết</button>
                             <?php 
                                 $paperid = $paper['paper_id'];
-                                $check_query = "select * from paper where paper_id = '$paperid' and editor_id = '$userid' and final_result <>'acceptance'";
+                                $check_query = "select * from paper where paper_id = '$paperid' and editor_id = '$userid' and paper_id not in (select paper_id from paper where final_result='acceptance')";
                                 $check_result = mysqli_query($connect_handle, $check_query);
                             ?>
                             <?php if(mysqli_num_rows($check_result) > 0):?>

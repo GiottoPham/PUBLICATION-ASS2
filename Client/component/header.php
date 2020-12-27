@@ -63,6 +63,10 @@
                             <a class="dropdown-item" href="userInfo.php"><i class="fas fa-user-circle"></i> Thông tin cá nhân</a>
                             <div class="dropdown-divider"></div>
                         <?php endif ?>
+                        <?php if(($_SESSION['role_editor'] == TRUE)):?>
+                            <a class="dropdown-item" href="postPaper.php"><i class="fas fa-newspaper"></i> Thêm bài báo</a>
+                            <div class="dropdown-divider"></div>
+                        <?php endif ?>
                         <a class="dropdown-item" href="../index.php?logout=true"><i class="fas fa-sign-out-alt"></i> Đăng
                             xuất</a>
                     </div>
