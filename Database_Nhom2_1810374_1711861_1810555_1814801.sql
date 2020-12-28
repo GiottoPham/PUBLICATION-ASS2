@@ -205,17 +205,17 @@ values ('0000000001','Machine Learning of Tensorflow',
 ('0000000002','Healthy General','The aim of this study was to compare the defined indicators of tuberculosis (TB) control program in
 the intervention and control prisons.','https://www.emerald.com/insight/content/doi/10.1108/JHR-04-2019-0074/full/pdf?title=comparison-of-tuberculosis-indicators-after-implementation-of-the-clinical-protocol-for-tuberculosis-and-hiv-management-in-iranian-prisons-a-quasi-experimental-study','0000000006','0000000002','2019-10-29','acceptance','posted'),
 ('0000000003','Review of Hello World','There has been a flowering of scholarly interest in the literature review as a research method in the information
-systems discipline','https://core.ac.uk/download/pdf/301376904.pdf','0000000007','0000000001','2015-10-28','rejection',null),
+systems discipline','https://core.ac.uk/download/pdf/301376904.pdf','0000000007','0000000001','2017-10-28','rejection',null),
 ('0000000004','Review of Alice in Wonderland','The aim of this review was to show everyone the thrilling of Alice in Wonderlan book.','http://www.ysgolgymraeg.ceredigion.sch.uk/gwaith_plant/Review%20Alice%20in%20Wonderland.pdf','0000000008','0000000002','2018-10-27','acceptance','posted'),
-('0000000005','Deep Learning and AI', 'Introduction about deeplearning and AI', 'http://faculty.neu.edu.cn/yury/AAI/Textbook/Deep%20Learning%20with%20Python.pdf','0000000008','0000000001','2020-10-27',null,'in review');
+('0000000005','Deep Learning and AI', 'Introduction about deeplearning and AI', 'http://faculty.neu.edu.cn/yury/AAI/Textbook/Deep%20Learning%20with%20Python.pdf','0000000008','0000000001','2020-10-27',null,'response review');
 insert into research_paper VALUES('0000000001',15);
 insert into research_paper VALUES('0000000005',13);
 insert into general_paper VALUES('0000000002',8);
 
-insert into book(isbn,`name`)
-values('1231231231231','Hello World');
-insert into book(isbn,`name`)
-values('1231231231232','Alice in Wonderland');
+insert into book
+values('1231231231231','Hello World','2017',15,'Kim Dong');
+insert into book
+values('1231231231232','Alice in Wonderland', '2018',20,'Tuoi Tre');
 
 insert into review_paper VALUES('0000000003',3,'1231231231231');
 insert into review_paper VALUES('0000000004',4,'1231231231232');
@@ -277,7 +277,7 @@ values('0000000004','0000000005', '0000000001');
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
 values('0000000004','0000000006', '0000000001');
 insert into evaluate(paper_id,reviewer_id,criteria_id) 
-values('0000000005','0000000008', '0000000001');
+values('0000000005','0000000005', '0000000001');
 
 insert into review(paper_id,reviewer_id,review_result)
 values('0000000001','0000000003','Good');
@@ -294,7 +294,7 @@ values('0000000004','0000000005','Normal');
 insert into review(paper_id,reviewer_id,review_result)
 values('0000000004','0000000006','Normal');
 insert into review(paper_id,reviewer_id,review_result)
-values('0000000005','0000000008','Very Good');
+values('0000000005','0000000005','Very Good');
 
 
  
