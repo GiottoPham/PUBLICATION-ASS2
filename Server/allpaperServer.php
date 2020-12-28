@@ -23,6 +23,19 @@ if(isset($_POST['getMoreInfoBtn'])){
             });
         </script>";
 }
+if (isset($_POST['bookInfo'])){
+    $paperId=$_POST['paperId'];
+    $moreinfo_paper_query = "select * from paper where paper_id = '$paperId'";
+    $moreinfo_paper_result = mysqli_query($connect_handle, $moreinfo_paper_query);
+    $moreinfo_paper_data = mysqli_fetch_assoc($moreinfo_paper_result);
+
+    echo 
+        "<script>
+            $(window).on('load', function () {
+                $('#bookinfo-modal').modal('toggle');
+            });
+        </script>";
+}
 if(isset($_POST['closeBtn'])){
     header("Refresh:0");
 };

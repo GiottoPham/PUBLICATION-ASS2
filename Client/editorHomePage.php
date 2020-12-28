@@ -36,7 +36,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Tiêu đề</th>
-                    <th scope="col">Ngày đăng</th>
+                    <th scope="col">Ngày gửi</th>
                     <th scope="col">Tác giả liên lạc</th>
                     <th class="text-center" scope="col">Thao tác</th>
                 </tr>
@@ -99,6 +99,26 @@
                             }
                             ?>
                         </p>
+                        <p><strong>Loại bài báo :</strong>
+                            <?php 
+                            $paperid = $moreinfo_paper_data['paper_id'];
+                            $query1 = "select * from research_paper where paper_id = '$paperid'";
+                            $result1 = mysqli_query($connect_handle,$query1);
+                            $query2 = "select * from review_paper where paper_id = '$paperid'";
+                            $result2 = mysqli_query($connect_handle,$query2);
+                            $query3 = "select * from general_paper where paper_id = '$paperid'";
+                            $result3 = mysqli_query($connect_handle,$query3);
+                            if(mysqli_num_rows($result1) > 0) echo "Bài báo nghiên cứu";
+                            elseif(mysqli_num_rows($result2) > 0) echo "Bài báo phản biện sách";
+                            elseif(mysqli_num_rows($result3) > 0) echo "Bài báo tổng quan";
+                            ?>
+                            <?php if(mysqli_num_rows($result2) > 0): ?>
+                                <form method="POST" action="editorHomePage.php">
+                        <input type="hidden" name="paperId" value="<?php echo $paperid;?>" />
+                        <button type="submit" class="btn btn-primary" name="bookInfo">Thông tin sách</button>
+                                </form>
+                        <?php endif ?>
+                        </p>
                         <p><strong>Tóm tắt :</strong>
                             <?php 
                             $papersummary = $moreinfo_paper_data['summary'];
@@ -119,21 +139,24 @@
                             }
                         ?>
                         </p>
-                        <p><strong>Tác giả liên lạc :</strong>
-                            <?php 
-                            $author_id = $moreinfo_paper_data['contact_author_id'];
-                            $get_author_name_query = "select last_name, middle_name, first_name from scientist where id = '$author_id'";
-                            $get_author_name_result = mysqli_query($connect_handle, $get_author_name_query);
-                            $data = mysqli_fetch_assoc($get_author_name_result);
-                            $paperauthorname = $data['last_name']." ".$data['middle_name']." ".$data['first_name'];
-                            if($paperauthorname != NULL){
-                                echo $paperauthorname;
-                            }else{
-                                echo '<i class="text-muted">Chưa có thông tin</i>';
-                            }
-                        ?>
+                        <p><strong>Các tác giả</strong>
+                        <?php
+                            $paperid = $moreinfo_paper_data['paper_id'];
+                            $getauthorsquery = "select * from `write` where paper_id = '$paperid' " ;
+                            $getauthors = mysqli_query($connect_handle,$getauthorsquery);
+                            ?>
+                            
+                        <?php foreach($getauthors as $author):?>
+                            <?php
+                                $authorid = $author['author_id'];
+                                $get_author_name_query = "select last_name, middle_name, first_name from scientist where id = '$authorid'";
+                                $get_author_name_result = mysqli_query($connect_handle, $get_author_name_query);
+                                $data = mysqli_fetch_assoc($get_author_name_result);
+                                echo "<br>".$data['last_name']." ".$data['middle_name']." ".$data['first_name'];
+                                ?>
+                                <?php endforeach?>
                         </p>
-                        <p><strong>Ngày đăng :</strong>
+                        <p><strong>Ngày gửi :</strong>
                             <?php 
                             $paperpostdate = $moreinfo_paper_data['post_date'];
                             if($paperpostdate != NULL){
@@ -238,7 +261,68 @@
                 </div>
             </div>
         </div>
-
+        <div class="modal fade" id="bookinfo-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mã ISBN:
+                            <?php 
+                            $mypaperid=$moreinfo_paper_data['paper_id'];
+                            $myquery = "select * from book where isbn in (select isbn from review_paper where paper_id = '$mypaperid')";
+                            $get_book_result = mysqli_query($connect_handle, $myquery);
+                            $bookresult = mysqli_fetch_assoc($get_book_result);
+                            echo $bookresult['isbn'];           
+                            ?>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Tên sách :</strong>
+                            <?php 
+                            $bookname = $bookresult['name'];
+                            if($bookname != NULL){
+                                echo $bookname;
+                            }else{
+                                echo '<i class="text-muted">Chưa có thông tin</i>';
+                            }
+                            ?>
+                        </p>
+                        <p><strong>Năm xuất bản :</strong>
+                        <?php 
+                            $publish_year = $bookresult['publish_year'];
+                            if($publish_year != NULL){
+                                echo $publish_year;
+                            }else{
+                                echo '<i class="text-muted">Chưa có thông tin</i>';
+                            }
+                            ?>
+                        </p>
+                        <p><strong>Tổng số trang sách :</strong>
+                            <?php 
+                            $total_page = $bookresult['total_page'];
+                            if($total_page != NULL){
+                                echo $total_page;
+                            }else{
+                                echo '<i class="text-muted">Chưa có thông tin</i>';
+                            }
+                        ?>
+                        </p>
+                        <p><strong>Nhà xuất bản :</strong>
+                        <?php 
+                            $publisher = $bookresult['publisher'];
+                            if($publisher != NULL){
+                                echo $publisher;
+                            }else{
+                                echo '<i class="text-muted">Chưa có thông tin</i>';
+                            }
+                            ?>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>                        
         <div class="modal fade" id="update-modal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">

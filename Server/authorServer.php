@@ -5,6 +5,7 @@ include('userLogin.php');
 $userid = $_SESSION['userid'];
 $get_option_result = NULL;
 $get_sum_result = NULL;
+$get_author_result = NULL;
 $result_text = NULL;
 
 $select_all_paper_query = "select * from paper where paper_id not in (select paper_id from paper where status='posted')";
@@ -60,23 +61,35 @@ if(isset($_POST['updatePaperBtn'])){
             });
         </script>";
 };
+if (isset($_POST['bookInfo'])){
+    $paperId=$_POST['paperId'];
+    $moreinfo_paper_query = "select * from paper where paper_id = '$paperId'";
+    $moreinfo_paper_result = mysqli_query($connect_handle, $moreinfo_paper_query);
+    $moreinfo_paper_data = mysqli_fetch_assoc($moreinfo_paper_result);
 
+    echo 
+        "<script>
+            $(window).on('load', function () {
+                $('#bookinfo-modal').modal('toggle');
+            });
+        </script>";
+}
 if(isset($_POST['viewOption'])){
     $optionView = $_POST['optionView'];
     $authorid = $_POST['authorid'];
     $year = $_POST['year'];
-    
+    $paper_id = $_POST['paper_id'];
     $query6 = "select *
     from paper
     where year(post_date)='$year'
     ";    
 
     $query7="select *
-    from paper
+    from paper p join published_paper pp on p.paper_id = pp.paper_id
     where year(post_date)='$year' and `status`='posted'";
 
     $query8="select *
-    from paper
+    from paper p join published_paper pp on p.paper_id = pp.paper_id
     where status='publishing'";
 
     $query9="select *
@@ -97,6 +110,11 @@ if(isset($_POST['viewOption'])){
     from general_paper gp join paper p on gp.paper_id=p.paper_id
     where status='posted' and year(now())-year(p.post_date)<5
     group by year(p.post_date)";
+    $query13 = "select s.*, author_email
+    from scientist s join author a on s.id=a.id
+    where s.id in (select author_id 
+    from `write`
+    where (paper_id = '$paper_id'))";
     
     switch ($optionView) {
         case '6':
@@ -125,6 +143,9 @@ if(isset($_POST['viewOption'])){
 
         case '12':
             $get_sum_result = mysqli_query($connect_handle, $query12);
+        break;
+        case '13':
+            $get_author_result = mysqli_query($connect_handle, $query13);
         break;
     };
 };
