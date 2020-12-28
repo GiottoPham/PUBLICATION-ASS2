@@ -65,7 +65,17 @@
                 <?php } ?>
             </tbody>
         </table>
-
+        <form method="POST" action="criteria.php">
+                            <?php
+                                $check_query = "select * from editor where id = '$userid'";
+                                $check_result = mysqli_query($connect_handle, $check_query);
+                            ?>
+                            <?php if(mysqli_num_rows($check_result) > 0 && $_SESSION['role_editor'] == TRUE):?>
+                                
+                                <button type = "input" class="btn btn-primary float-left" name="insertcriteria">Thêm tiêu chí</button>
+                                <br>
+                            <?php endif?>
+                        </form>                     
         <div class="modal fade" id="update-criteria-modal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -94,6 +104,32 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="insert-criteria-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm tiêu chí đánh giá :
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-container" name="updatecriteriaForm" method="POST"
+                            action="criteria.php">
+                            <div class="form-group">
+                                <label for="criteriaContent">Nội dung</label>
+                                <textarea class="form-control" name="criteriaContent" rows="2"
+                                placeholder="Nội dung"
+                                required></textarea>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-success" name="insertcriteriaBtn">Lưu thông
+                                    tin</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="modal fade" id="update-success-modal" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog">
             <div class="modal-dialog">
@@ -104,6 +140,26 @@
                     <div class="modal-body">
                         <p class="text-left text-success"><strong>
                                 Cập nhật thông tin thành công !
+                            </strong>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                    <form method="POST" action="criteria.php">
+                            <button type="submit" class="btn btn-secondary" name="closeBtn">Đóng</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="insert-criteria-success-modal" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm tiêu chí</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-left text-success"><strong>
+                                Thêm tiêu chí đánh giá thành công !
                             </strong>
                         </p>
                     </div>

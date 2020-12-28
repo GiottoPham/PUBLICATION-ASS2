@@ -1,7 +1,14 @@
 <?php
 include('DBstart.php');
 include('userLogin.php');
-
+function getNewId($number){
+    $zerostr='';
+    $newstr='';
+    for ($i=1; $i<= 10-strlen($number);$i++){
+        $zerostr=$zerostr.'0';
+    }
+    return $newstr=$newstr.$zerostr.($number);
+}
 $userid = $_SESSION['userid'];
 $get_option_result = NULL;
 $get_sum_result = NULL;
@@ -22,7 +29,14 @@ if(isset($_POST['updatecriteria'])){
             });
         </script>";
 }
-
+if(isset($_POST['insertcriteria'])){
+    echo 
+        "<script>
+            $(window).on('load', function () {
+                $('#insert-criteria-modal').modal('toggle');
+            });
+        </script>";
+}
 if(isset($_POST['updatecriteriaBtn'])){
     $criteriaId = $_POST['criteriaId'];
     $criteriaContent = $_POST['criteriaContent'];
@@ -39,6 +53,23 @@ if(isset($_POST['updatecriteriaBtn'])){
             });
         </script>";
 };
+
+if(isset($_POST['insertcriteriaBtn'])){
+    $criteriaContent = $_POST['criteriaContent'];
+    $criteria_num = mysqli_num_rows(mysqli_query($connect_handle,"select * from criteria"));
+                $insert_criteriaid = getNewId($criteria_num + 1);
+    $query = "insert into criteria
+    values('$insert_criteriaid','$criteriaContent')";
+    $result = mysqli_query($connect_handle, $query);
+    
+    echo 
+        "<script>
+            $(window).on('load', function () {
+                $('#insert-criteria-success-modal').modal('toggle');
+            });
+        </script>";
+};
+
 if(isset($_POST['deleterating'])){
     $criteriaId=$_POST['criteriaId'];
     $description = $_POST['description'];
