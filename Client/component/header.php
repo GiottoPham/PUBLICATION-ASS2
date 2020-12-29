@@ -33,7 +33,7 @@
                     </li>
                     <?php endif ?>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#"><strong>Liên hệ</strong></a>
+                        <a class="nav-link text-light" href="https://github.com/khoaideptrai/PUBLICATION-ASS2"><strong>Liên hệ</strong></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="criteria.php"><strong>Tiêu chí đánh giá</strong></a>

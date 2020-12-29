@@ -91,7 +91,7 @@
                         <button type="submit" class="btn btn-success" name="bookInfo">Thông tin sách</button>
                         <?php endif ?>
                             <?php if(mysqli_num_rows($check_result) > 0):?>
-                            <button class="btn btn-primary" name="updateReivewer">Cập nhật phản biện</button>
+                            <button class="btn btn-primary" name="updateReivewer">Phân công phản biện</button>
                             <?php endif?>
                         </form>
                     </td>
