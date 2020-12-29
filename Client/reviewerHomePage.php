@@ -36,6 +36,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Tiêu đề</th>
+                    <th scope="col">Loại bài báo</th>
                     <th scope="col">Ngày gửi</th>
                     <th scope="col">Tác giả liên lạc</th>
                     <th class="text-center" scope="col">Thao tác</th>
@@ -49,6 +50,20 @@
                     </td>
                     <td>
                         <?php echo $paper['title']; ?>
+                    </td>
+                    <td>
+                    <?php 
+                            $paperid = $paper['paper_id'];
+                            $query1 = "select * from research_paper where paper_id = '$paperid'";
+                            $result1 = mysqli_query($connect_handle,$query1);
+                            $query2 = "select * from review_paper where paper_id = '$paperid'";
+                            $result2 = mysqli_query($connect_handle,$query2);
+                            $query3 = "select * from general_paper where paper_id = '$paperid'";
+                            $result3 = mysqli_query($connect_handle,$query3);
+                            if(mysqli_num_rows($result1) > 0) echo "Research Paper";
+                            elseif(mysqli_num_rows($result2) > 0) echo "Review Book Paper";
+                            elseif(mysqli_num_rows($result3) > 0) echo "General Paper";
+                            ?>
                     </td>
                     <td>
                         <?php echo date('d/m/Y', strtotime($paper['post_date']));?>
@@ -71,6 +86,9 @@
                                 $check_query = "select * from paper p join assign a on p.paper_id = a.paper_id where p.paper_id = '$paperid' and reviewer_id = '$userid' and status in (null,'in review', 'response review')";
                                 $check_result = mysqli_query($connect_handle, $check_query);
                             ?>
+                            <?php if(mysqli_num_rows($result2) > 0): ?>
+                        <button type="submit" class="btn btn-success" name="bookInfo">Thông tin sách</button>
+                        <?php endif ?>
                             <?php if(mysqli_num_rows($check_result) > 0):?>
                                 <button class="btn btn-primary" name="updateReivewer">Cập nhật phản biện</button>
                             <?php endif?>
@@ -109,16 +127,10 @@
                             $result2 = mysqli_query($connect_handle,$query2);
                             $query3 = "select * from general_paper where paper_id = '$paperid'";
                             $result3 = mysqli_query($connect_handle,$query3);
-                            if(mysqli_num_rows($result1) > 0) echo "Bài báo nghiên cứu";
-                            elseif(mysqli_num_rows($result2) > 0) echo "Bài báo phản biện sách";
-                            elseif(mysqli_num_rows($result3) > 0) echo "Bài báo tổng quan";
+                            if(mysqli_num_rows($result1) > 0) echo "Research Paper";
+                            elseif(mysqli_num_rows($result2) > 0) echo "Review Book Paper";
+                            elseif(mysqli_num_rows($result3) > 0) echo "General Paper";
                             ?>
-                            <?php if(mysqli_num_rows($result2) > 0): ?>
-                                <form method="POST" action="reviewerHomePage.php">
-                        <input type="hidden" name="paperId" value="<?php echo $paperid;?>" />
-                        <button type="submit" class="btn btn-primary" name="bookInfo">Thông tin sách</button>
-                                </form>
-                        <?php endif ?>
                         </p>
                         <p><strong>Tóm tắt :</strong>
                             <?php 
